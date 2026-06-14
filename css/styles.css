@@ -1,0 +1,441 @@
+/* ============================================================
+   Elias Gastis — "Space95"
+   Windows 95/98 desktop, in space. Plain CSS.
+   ============================================================ */
+
+:root {
+  --silver:   #c3c3c3;
+  --silver-l: #dfdfdf;
+  --silver-d: #818181;
+  --white:    #ffffff;
+  --black:    #0a0a0a;
+  --navy:     #000080;
+  --title:    linear-gradient(90deg, #1a0a52 0%, #3417a3 45%, #1668c9 100%);
+  --title-off:linear-gradient(90deg, #4a4a6a, #6b6b86);
+  --cyan:     #38e0e6;
+  --magenta:  #ec4899;
+  --green:    #2bff9e;
+  --amber:    #ffcf4d;
+  --space:    #060716;
+
+  /* raised 3D bevel (window/button face) */
+  --bevel-out: inset -1px -1px var(--black), inset 1px 1px var(--white),
+               inset -2px -2px var(--silver-d), inset 2px 2px var(--silver-l);
+  /* sunken bevel (input/content well) */
+  --bevel-in:  inset 1px 1px var(--silver-d), inset -1px -1px var(--white),
+               inset 2px 2px var(--black), inset -2px -2px var(--silver-l);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 30px; }
+
+body {
+  font-family: "VT323", "Courier New", monospace;
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--black);
+  background: var(--space) url("../assets/JWST.png") center top / cover fixed no-repeat;
+  min-height: 100vh;
+  padding-bottom: 60px;            /* room for taskbar */
+  overflow-x: hidden;
+  -webkit-font-smoothing: none;
+}
+h1, h2, h3, h4 { font-family: "Press Start 2P", monospace; font-weight: 400; line-height: 1.5; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+::selection { background: var(--navy); color: #fff; }
+
+/* ---------- Desktop background (JWST deep field) ---------- */
+#starfield { position: fixed; inset: 0; z-index: -2; display: block; opacity: .45; }
+.nebula {
+  /* darkening + colour overlay so windows pop and the JWST field shows through */
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(50% 40% at 12% 8%, rgba(139, 92, 246, 0.14), transparent 60%),
+    radial-gradient(60% 50% at 50% 104%, rgba(236, 72, 153, 0.12), transparent 65%),
+    linear-gradient(180deg, rgba(5, 3, 15, 0.62) 0%, rgba(8, 8, 28, 0.45) 45%, rgba(5, 3, 15, 0.72) 100%);
+}
+.wp-credit {
+  position: fixed; right: 10px; bottom: 50px; z-index: 4;
+  font-size: 13px; color: rgba(255,255,255,.5); text-shadow: 1px 1px 0 #000;
+  letter-spacing: .3px; pointer-events: none; max-width: 60vw; text-align: right;
+}
+
+/* ---------- Desktop icons ---------- */
+.desktop-icons { position: fixed; top: 16px; left: 16px; z-index: 5; display: flex; flex-direction: column; gap: 20px; }
+.dsk { display: flex; flex-direction: column; align-items: center; width: 76px; gap: 5px; text-align: center; }
+.dsk__img { width: 38px; height: 38px; }
+.dsk span { font-size: 16px; color: #fff; text-shadow: 1px 1px 0 #000; padding: 1px 3px; }
+.dsk:hover span { background: var(--navy); outline: 1px dotted #fff; }
+.dsk:focus-visible span { background: var(--navy); outline: 1px dotted #fff; }
+
+/* ---------- Window shell ---------- */
+.win {
+  position: relative; z-index: 2;
+  max-width: 880px; margin: 0 auto 40px;
+  background: var(--silver);
+  box-shadow: var(--bevel-out);
+  padding: 3px;
+}
+.win:first-of-type { margin-top: 60px; }
+main { padding: 0 16px; }
+
+.win__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--title); color: #fff;
+  padding: 4px 4px 4px 7px; user-select: none;
+}
+.win__title { font-family: "Press Start 2P"; font-size: 10px; letter-spacing: .5px; display: flex; align-items: center; gap: 8px; }
+.win__ico { font-size: 13px; }
+.win__btns { display: flex; gap: 3px; }
+.win__btns b {
+  display: grid; place-items: center; width: 20px; height: 18px;
+  background: var(--silver); color: var(--black);
+  box-shadow: var(--bevel-out); font-family: "VT323"; font-size: 15px; font-weight: 700;
+}
+.win__btns .x { font-size: 13px; }
+
+/* Menu bar */
+.win__menu { display: flex; gap: 16px; padding: 3px 8px; font-size: 18px; background: var(--silver); }
+.win__menu span { cursor: default; }
+.win__menu u { text-underline-offset: 2px; }
+
+/* Address bar (explorer) */
+.win__addr { display: flex; align-items: center; gap: 8px; padding: 4px 8px 6px; background: var(--silver); font-size: 17px; }
+.win__addr-box { flex: 1; background: var(--white); box-shadow: var(--bevel-in); padding: 2px 8px; }
+
+/* Status bar */
+.win__status { display: flex; justify-content: space-between; padding: 3px 10px; font-size: 16px; background: var(--silver); box-shadow: var(--bevel-in); margin: 3px; }
+
+.win__body { background: var(--silver); padding: 18px; }
+.win__body--pad { padding: 20px; }
+
+/* ---------- HERO terminal ---------- */
+.win--hero { max-width: 920px; }
+.win__body--term {
+  background: #04060f; color: var(--green); padding: 30px 26px;
+  box-shadow: var(--bevel-in); margin: 3px;
+  background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px); /* CRT scanlines */
+}
+.term__line { font-size: 19px; color: #6effc0; opacity: .8; }
+.term__name {
+  font-family: "Press Start 2P"; font-size: clamp(1.5rem, 6vw, 3rem);
+  color: #fff; margin: 16px 0 14px; text-shadow: 0 0 12px rgba(56,224,230,.7), 3px 3px 0 var(--magenta);
+}
+.term__sub { font-size: 21px; color: var(--cyan); letter-spacing: 1px; }
+.term__desc { font-size: 20px; color: #b9ffe0; margin-top: 16px; max-width: 60ch; }
+.caret { animation: blink 1s steps(1) infinite; color: var(--green); }
+@keyframes blink { 50% { opacity: 0; } }
+.term__actions { margin-top: 26px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ---------- 95 buttons ---------- */
+.btn95 {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: "VT323"; font-size: 19px; color: var(--black);
+  background: var(--silver); box-shadow: var(--bevel-out);
+  padding: 6px 16px; cursor: pointer; white-space: nowrap;
+}
+.btn95:active { box-shadow: var(--bevel-in); padding: 7px 15px 5px 17px; }
+.btn95:focus-visible { outline: 1px dotted var(--black); outline-offset: -4px; }
+.btn95--wide { width: 100%; justify-content: center; margin-top: 14px; }
+.win__body--term .btn95 { background: var(--silver); }
+
+/* ---------- ABOUT ---------- */
+.about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; align-items: start; }
+.notepad { background: var(--white); box-shadow: var(--bevel-in); padding: 16px 18px; color: #111; }
+.notepad p { margin-bottom: 14px; }
+.notepad__head { font-family: "Press Start 2P"; font-size: 11px; color: var(--navy); margin: 6px 0 12px; }
+.notepad__head:not(:first-child) { margin-top: 22px; border-top: 1px dashed #aaa; padding-top: 16px; }
+
+.affil { display: flex; flex-direction: column; gap: 12px; }
+.affil--row { flex-direction: row; flex-wrap: wrap; }
+.logo95 { display: flex; align-items: center; gap: 12px; background: var(--silver); box-shadow: var(--bevel-out); padding: 9px 12px; min-width: 0; }
+.affil--row .logo95 { flex: 1 1 240px; }
+.logo95__mark {
+  font-family: "Press Start 2P"; font-size: 13px; color: #fff;
+  padding: 9px 10px; box-shadow: var(--bevel-in); white-space: nowrap; min-width: 64px; text-align: center;
+}
+.logo95__mark--anu   { background: linear-gradient(135deg, #b89020, #6b4f00); }
+.logo95__mark--um    { background: linear-gradient(135deg, #062b6e, #021643); }
+.logo95__mark--magpi { background: linear-gradient(135deg, #6d28d9, #b21e6b); }
+.logo95__mark--alma  { background: linear-gradient(135deg, #0e7490, #053a4a); }
+.logo95__txt { font-size: 17px; color: #111; line-height: 1.25; }
+.logo95__txt i { color: #444; }
+.logo95__plate { background: #fff; box-shadow: var(--bevel-in); padding: 8px 10px; display: grid; place-items: center; min-width: 84px; min-height: 50px; flex: 0 0 auto; }
+.logo95__plate img { max-height: 40px; max-width: 96px; display: block; }
+
+/* Contact dialog */
+.dialog { background: var(--silver); box-shadow: var(--bevel-out); padding: 3px; align-self: start; }
+.dialog__bar { background: var(--title); color: #fff; font-family: "Press Start 2P"; font-size: 9px; padding: 5px 7px; }
+.dialog__body { padding: 16px 15px; }
+.dialog__name { font-family: "Press Start 2P"; font-size: 12px; color: #111; }
+.dialog__role { font-size: 17px; color: #333; margin: 8px 0 14px; }
+.dialog__list { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 18px; }
+.dialog__list dt { color: #333; }
+.dialog__list dd a { color: var(--navy); text-decoration: underline; word-break: break-all; }
+.dialog__list dd a:hover { color: var(--magenta); }
+
+/* ---------- RESEARCH ---------- */
+.field-label { font-family: "Press Start 2P"; font-size: 11px; color: var(--navy); margin: 4px 0 14px; }
+.field-label:not(:first-child) { margin-top: 28px; }
+.research-para { font-size: 20px; color: #111; background: #fff; box-shadow: var(--bevel-in); padding: 16px 18px; line-height: 1.5; }
+.research-para p { margin-bottom: 14px; }
+.research-para p:last-child { margin-bottom: 0; }
+.logostrip { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.logostrip__plate { display: flex; align-items: center; justify-content: center; gap: 14px; background: #fff; box-shadow: var(--bevel-out); padding: 12px 18px; min-height: 70px; flex: 1 1 160px; cursor: pointer; }
+.logostrip__plate img { max-height: 46px; max-width: 90px; width: auto; display: block; }
+.logostrip__name { font-family: "Press Start 2P"; font-size: 14px; color: #111; }
+.logostrip__plate:hover { background: #e8eaff; }
+.logostrip__plate:hover .logostrip__name { color: var(--navy); }
+.logostrip__plate:active { box-shadow: var(--bevel-in); padding: 13px 17px 11px 19px; }
+.inl { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; background: #fff; box-shadow: var(--bevel-out); padding: 3px 9px 3px 6px; margin: 0 3px; font-size: 16px; color: #111; line-height: 1; }
+.inl img { height: 18px; width: auto; display: block; }
+.inl--txt { font-family: "VT323"; padding: 3px 9px; font-size: 17px; }
+.themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.theme95 { background: var(--white); box-shadow: var(--bevel-in); padding: 14px 14px 16px; }
+.theme95__n { font-family: "Press Start 2P"; font-size: 12px; color: var(--magenta); }
+.theme95 h3 { font-size: 12px; margin: 12px 0 10px; color: #111; }
+.theme95 p { font-size: 17px; color: #333; }
+
+.paper95 { background: var(--silver); box-shadow: var(--bevel-out); padding: 3px; }
+.paper95__bar { background: var(--title-off); color: #fff; font-family: "Press Start 2P"; font-size: 9px; padding: 5px 8px; }
+.paper95__body { background: var(--white); box-shadow: var(--bevel-in); margin: 3px; padding: 16px 18px; }
+.paper95__tag { font-family: "Press Start 2P"; font-size: 9px; color: #8a5a00; margin-bottom: 12px; }
+.paper95__title { font-size: 14px; line-height: 1.6; color: #111; }
+.paper95__authors { font-size: 18px; margin: 12px 0; color: #222; }
+.paper95__abstract { font-size: 18px; color: #333; }
+.paper95__links { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ---------- PROJECTS explorer ---------- */
+.win__body--explorer {
+  background: var(--white); box-shadow: var(--bevel-in); margin: 3px; padding: 18px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;
+}
+.file95 { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; padding: 12px 8px; }
+.file95__icon { width: 52px; height: 52px; }
+.file95__name { font-size: 18px; color: #111; }
+.file95__type { font-size: 15px; color: #666; }
+.file95:hover { background: var(--navy); }
+.file95:hover .file95__name, .file95:hover .file95__type { color: #fff; }
+.file95:hover .file95__name { outline: 1px dotted #fff; }
+.file95--soon { cursor: default; }
+.file95--soon .file95__name::after { content: " ◷"; color: #888; }
+
+/* ---------- Start menu ---------- */
+.startmenu {
+  position: fixed; bottom: 46px; left: 4px; z-index: 60;
+  display: flex; background: var(--silver); box-shadow: var(--bevel-out); padding: 3px;
+}
+.startmenu[hidden] { display: none; }
+.startmenu__side {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  background: linear-gradient(0deg, #1a0a52, #1668c9);
+  color: #fff; font-family: "Press Start 2P"; font-size: 16px;
+  padding: 14px 8px; letter-spacing: 2px; display: flex; align-items: flex-end; gap: 6px;
+}
+.startmenu__side span { color: var(--cyan); font-size: 11px; }
+.startmenu__list { list-style: none; min-width: 210px; padding: 4px; }
+.startmenu__list li a { display: block; padding: 8px 14px; font-size: 19px; color: #111; }
+.startmenu__list li a:hover { background: var(--navy); color: #fff; }
+.startmenu__sep { height: 2px; margin: 4px 2px; box-shadow: inset 0 1px var(--silver-d), inset 0 -1px var(--white); }
+
+/* ---------- Taskbar ---------- */
+.taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 70; height: 42px;
+  display: flex; align-items: center; gap: 6px; padding: 4px 6px;
+  background: var(--silver); box-shadow: inset 0 2px var(--white), inset 0 -1px var(--silver-d);
+}
+.start {
+  display: flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px;
+  font-family: "Press Start 2P"; font-size: 12px; color: #111; cursor: pointer;
+  background: var(--silver); box-shadow: var(--bevel-out); border: 0;
+}
+.start[aria-expanded="true"] { box-shadow: var(--bevel-in); }
+.start__logo { color: var(--magenta); font-size: 15px; }
+.taskbar__items { display: flex; gap: 5px; flex: 1; overflow: hidden; }
+.tb {
+  display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; max-width: 200px;
+  font-size: 17px; color: #111; background: var(--silver); box-shadow: var(--bevel-out);
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.tb.active { box-shadow: var(--bevel-in); background: #b0b0b0; }
+.tray { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; box-shadow: var(--bevel-in); font-size: 18px; }
+.tray__net { font-size: 14px; }
+
+/* ---------- galaxy3d.exe — floating app window ---------- */
+.appwin {
+  position: fixed; z-index: 80;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: min(900px, 92vw); height: min(620px, 78vh);
+  background: var(--silver); box-shadow: var(--bevel-out); padding: 3px;
+  display: flex; flex-direction: column;
+}
+.appwin[hidden] { display: none; }
+.appwin--max {
+  top: 0; left: 0; transform: none;
+  width: 100vw; height: calc(100vh - 42px);   /* leave the taskbar visible */
+}
+.appwin__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--title); color: #fff; padding: 4px 4px 4px 7px;
+  user-select: none; cursor: grab; flex: 0 0 auto; touch-action: none;
+}
+.appwin__bar:active { cursor: grabbing; }
+.appwin--max .appwin__bar { cursor: default; }
+.appbtn {
+  display: grid; place-items: center; width: 20px; height: 18px;
+  background: var(--silver); color: var(--black); box-shadow: var(--bevel-out);
+  font-family: "VT323"; font-size: 15px; font-weight: 700; line-height: 1;
+  border: 0; cursor: pointer;
+}
+.appbtn:active { box-shadow: var(--bevel-in); }
+.appbtn.x { font-size: 13px; }
+.appbtn.x:hover { background: #e0b0b0; }
+
+.appwin__menu { display: flex; align-items: center; gap: 16px; padding: 3px 8px; font-size: 18px; background: var(--silver); flex: 0 0 auto; }
+.appwin__menu u { text-underline-offset: 2px; }
+.appwin__menu-sp { flex: 1; }
+.appwin__menu .btn95 { font-size: 16px; padding: 3px 10px; }
+
+.appwin__body { position: relative; flex: 1 1 auto; min-height: 0; margin: 3px; background: #04060f; box-shadow: var(--bevel-in); overflow: hidden; }
+#galaxyCanvas { display: block; width: 100%; height: 100%; }
+.appwin__hud { position: absolute; left: 12px; bottom: 9px; z-index: 2; pointer-events: none; font-family: "VT323"; font-size: 16px; color: rgba(185, 255, 224, .65); text-shadow: 1px 1px 0 #000; }
+.appwin__loading { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; z-index: 3; background: #04060f; color: var(--green); font-family: "VT323"; font-size: 21px; }
+.appwin__loading[hidden] { display: none; }
+.appwin__status { display: flex; justify-content: space-between; padding: 3px 10px; font-size: 16px; background: var(--silver); box-shadow: var(--bevel-in); margin: 3px; flex: 0 0 auto; }
+
+/* galaxy taskbar button */
+button.tb { border: 0; font-family: "VT323"; cursor: pointer; }
+.tb[hidden] { display: none; }
+
+/* ---------- Recycle Bin — floating explorer window ---------- */
+.appwin--bin { width: min(720px, 92vw); height: min(560px, 80vh); }
+.appwin--bin .win__addr { flex: 0 0 auto; }
+.appwin__body--bin {
+  background: var(--white); color: #111;
+  overflow: auto; overflow-x: hidden;
+}
+.bin-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; padding: 14px; align-content: start;
+}
+.bin-grid .file95 { justify-content: flex-start; }
+.bin-grid .file95__name { word-break: break-all; }
+/* clickable easter-egg files are <button>; normalise to match the <a> tiles */
+button.file95 { border: 0; background: none; font: inherit; cursor: pointer; color: inherit; width: 100%; }
+
+/* ---------- Win95 message box (modal dialogs) ---------- */
+.msgbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center; padding: 16px;
+  background: rgba(4, 6, 16, .45);
+}
+.msgbox[hidden] { display: none; }
+.msgbox__win {
+  width: min(460px, 94vw);
+  background: var(--silver); box-shadow: var(--bevel-out); padding: 3px;
+  animation: msgpop .12s ease-out;
+}
+@keyframes msgpop { from { transform: scale(.96); opacity: 0; } }
+.msgbox__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--title); color: #fff; user-select: none;
+  font-family: "Press Start 2P"; font-size: 9px; padding: 6px 6px 6px 8px;
+}
+.msgbox__body { display: flex; gap: 16px; padding: 20px 18px 6px; align-items: flex-start; }
+.msgbox__icon { font-size: 34px; line-height: 1; flex: 0 0 auto; }
+.msgbox__text { font-size: 19px; color: #111; line-height: 1.4; }
+.msgbox__text p { margin-bottom: 10px; }
+.msgbox__text p:last-child { margin-bottom: 0; }
+.msgbox__text code { font-family: "VT323", monospace; font-size: 18px; background: var(--white); box-shadow: var(--bevel-in); padding: 0 5px; }
+.msgbox__btns { display: flex; justify-content: center; gap: 12px; padding: 14px 18px 18px; }
+.msgbox__btns .btn95 { min-width: 92px; justify-content: center; }
+
+/* ---------- Clippy ---------- */
+.clippy {
+  position: fixed; right: 18px; bottom: 54px; z-index: 75;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  pointer-events: none;            /* children re-enable; corner stays click-through */
+}
+.clippy[hidden] { display: none; }
+.clippy__char {
+  pointer-events: auto; border: 0; background: none; cursor: pointer; padding: 0; width: 54px;
+  filter: drop-shadow(2px 3px 2px rgba(0,0,0,.5));
+  animation: clippyBob 3.2s ease-in-out infinite;
+}
+.clippy__svg { width: 54px; height: auto; display: block; }
+.clippy__char:hover { filter: drop-shadow(0 0 6px rgba(56,224,230,.85)); }
+@keyframes clippyBob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+.clippy__bubble {
+  pointer-events: auto; position: relative; width: min(270px, 70vw);
+  background: #fff8d6; box-shadow: var(--bevel-out); padding: 22px 14px 12px; color: #111;
+}
+.clippy__bubble[hidden] { display: none; }
+.clippy__bubble::after {
+  content: ""; position: absolute; right: 22px; bottom: -10px;
+  border: 10px solid transparent; border-top-color: #fff8d6; border-bottom: 0;
+}
+.clippy__x {
+  position: absolute; top: 4px; right: 4px; width: 20px; height: 18px;
+  display: grid; place-items: center; border: 0; cursor: pointer;
+  background: var(--silver); color: #111; box-shadow: var(--bevel-out);
+  font-family: "VT323"; font-size: 13px;
+}
+.clippy__x:active { box-shadow: var(--bevel-in); }
+.clippy__text { font-size: 18px; line-height: 1.3; margin-bottom: 12px; }
+.clippy__actions { display: flex; gap: 8px; justify-content: flex-end; }
+.clippy__actions .btn95 { font-size: 16px; padding: 4px 10px; }
+
+/* ---------- Today in Space (NASA APOD) ---------- */
+.appwin--apod { width: min(680px, 92vw); height: min(640px, 86vh); }
+.appwin__body--apod { background: #0a0c18; color: #cfe3ff; overflow: auto; overflow-x: hidden; }
+.apod { padding-bottom: 16px; }
+.apod__loading { display: grid; place-items: center; min-height: 200px; padding: 30px; text-align: center; color: var(--cyan); font-size: 21px; }
+.apod__media { background: #000; display: block; }
+.apod__media a { display: block; }
+.apod__media img { display: block; width: 100%; height: auto; max-height: 360px; object-fit: contain; background: #000; }
+.apod__media iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; }
+.apod__title { font-size: 14px; line-height: 1.6; color: #fff; padding: 16px 18px 0; }
+.apod__credit { font-size: 16px; color: #8fb6ff; padding: 6px 18px 0; }
+.apod__text { font-size: 18px; line-height: 1.5; color: #cfe3ff; padding: 14px 18px 0; }
+.apod__source { padding: 14px 18px 0; }
+.apod__source a { color: var(--cyan); text-decoration: underline; font-size: 17px; }
+.apod__source a:hover { color: var(--magenta); }
+
+/* ---------- asteroids.exe ---------- */
+.appwin--game { width: min(760px, 92vw); height: min(620px, 82vh); }
+.appwin__body--game { background: #04060f; }
+#asteroidsCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+/* ---------- Starfield screensaver ---------- */
+.screensaver { position: fixed; inset: 0; z-index: 9999; background: #000; }
+.screensaver[hidden] { display: none; }
+.screensaver canvas { display: block; width: 100%; height: 100%; }
+.screensaver__hint {
+  position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);
+  font-family: "VT323", monospace; font-size: 18px; letter-spacing: 1px;
+  color: rgba(255,255,255,.4); animation: ssHintPulse 2.4s ease-in-out infinite;
+}
+@keyframes ssHintPulse { 0%,100% { opacity: .15; } 50% { opacity: .5; } }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(20px) scale(.99); transition: opacity .5s ease, transform .5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .about { grid-template-columns: 1fr; }
+  .themes { grid-template-columns: 1fr; }
+  .desktop-icons { display: none; }
+}
+@media (max-width: 560px) {
+  body { font-size: 18px; }
+  .taskbar__items .tb span, .tb { font-size: 15px; }
+  .tb { max-width: 120px; }
+  .term__name { text-shadow: 2px 2px 0 var(--magenta); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .caret { animation: none !important; }
+}

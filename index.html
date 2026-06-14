@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Elias Gastis — astronomer at the Australian National University studying the molecular gas content of early-type galaxies with the MAGPI survey and ALMA." />
+  <meta name="author" content="Elias Gastis" />
+  <title>Elias Gastis · Astronomer [Space95]</title>
+
+  <meta property="og:title" content="Elias Gastis · Astronomer" />
+  <meta property="og:description" content="Molecular gas in early-type galaxies — MAGPI & ALMA. A Windows-95-in-space homepage." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23000080'/><circle cx='8' cy='8' r='4' fill='%2338e0e6'/></svg>" />
+</head>
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula" aria-hidden="true"></div>
+
+  <!-- ===== Desktop icons ===== -->
+  <div class="desktop-icons" aria-label="Desktop shortcuts">
+    <a href="#home" class="dsk">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1" fill="#c0c0c0" stroke="#0a0a0a"/><rect x="5" y="6" width="14" height="8" fill="#000080"/><rect x="2" y="17" width="20" height="3" fill="#808080" stroke="#0a0a0a"/></svg>
+      <span>My Computer</span>
+    </a>
+    <a href="assets/gastis_CV.pdf" target="_blank" rel="noopener" class="dsk">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true"><rect x="4" y="3" width="16" height="18" fill="#fff" stroke="#0a0a0a"/><rect x="7" y="7" width="10" height="2" fill="#000080"/><rect x="7" y="11" width="10" height="1.5" fill="#808080"/><rect x="7" y="14" width="7" height="1.5" fill="#808080"/></svg>
+      <span>CV.pdf</span>
+    </a>
+    <a href="#" class="dsk" id="galaxyIcon" role="button" aria-label="Open the 3D galaxy simulator">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
+        <circle cx="12" cy="12" r="11" fill="#070718" stroke="#0a0a0a"/>
+        <path d="M12 12 C12 7 18.5 6 20 11" fill="none" stroke="#5b8cff" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M12 12 C12 17 5.5 18 4 13" fill="none" stroke="#6db3ff" stroke-width="1.7" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="3.2" fill="#ffcf6b"/>
+        <circle cx="12" cy="12" r="1.5" fill="#fff4d2"/>
+      </svg>
+      <span>Galaxy.exe</span>
+    </a>
+    <a href="#" class="dsk" id="binIcon" role="button" aria-label="Open the Recycle Bin">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
+        <path d="M6 8 L18 8 L16.6 22 L7.4 22 Z" fill="#aeb9c6" stroke="#0a0a0a" stroke-width="1"/>
+        <path d="M9 10.5 V20 M12 10.5 V20 M15 10.5 V20" stroke="#5d6b7a" stroke-width="0.9"/>
+        <path d="M5 8 H19" stroke="#0a0a0a" stroke-width="1.4" stroke-linecap="round"/>
+        <g fill="none" stroke="#22b34d" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3.4 A4.2 4.2 0 0 1 15.4 4.4"/>
+          <path d="M15.4 2.2 L15.7 4.6 L13.3 4.4"/>
+        </g>
+      </svg>
+      <span>Recycle Bin</span>
+    </a>
+    <a href="#" class="dsk" id="asteroidsIcon" role="button" aria-label="Play Asteroids">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="18" rx="1" fill="#06070f" stroke="#0a0a0a"/>
+        <path d="M8 17 L15 8 L12.5 16 Z" fill="none" stroke="#b9ffe0" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M15.5 5 l2 .3 1 2 -.8 2 -2.2 .2 -1.2-1.8 z" fill="none" stroke="#9ad7ff" stroke-width="1"/>
+        <circle cx="6" cy="7" r=".7" fill="#fff"/><circle cx="18" cy="16" r=".7" fill="#fff"/><circle cx="5" cy="17" r=".5" fill="#fff"/>
+      </svg>
+      <span>Asteroids</span>
+    </a>
+    <a href="#" class="dsk" id="apodIcon" role="button" aria-label="Open NASA Today in Space">
+      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="16" rx="1" fill="#dfdfdf" stroke="#0a0a0a"/>
+        <rect x="5" y="6" width="14" height="12" fill="#0a1230"/>
+        <circle cx="9" cy="11" r="2.4" fill="#ffcf6b"/>
+        <ellipse cx="9" cy="11" rx="4" ry="1.3" fill="none" stroke="#7fa8ff" stroke-width=".8"/>
+        <circle cx="15" cy="8" r=".7" fill="#fff"/><circle cx="16.5" cy="14" r=".6" fill="#fff"/><circle cx="13" cy="15" r=".5" fill="#fff"/>
+      </svg>
+      <span>Today in Space</span>
+    </a>
+  </div>
+
+  <p class="wp-credit">Wallpaper: NASA, ESA, CSA, STScI — JWST &ldquo;First Deep Field&rdquo; (SMACS&nbsp;0723)</p>
+
+  <main>
+    <!-- ===== HERO: terminal ===== -->
+    <section class="win win--hero reveal" id="home">
+      <div class="win__bar">
+        <span class="win__title"><span class="win__ico">✦</span> welcome.exe</span>
+        <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
+      </div>
+      <div class="win__body win__body--term">
+        <p class="term__line">C:\HOME&gt; welcome.exe</p>
+        <h1 class="term__name">ELIAS LUKE GASTIS</h1>
+        <p class="term__sub">Student Astronomer &gt;&gt; Transitioning to Industry</p>
+        <p class="term__desc">Hello visitor, thanks for stopping by my webpage! Feel free to have a poke around. 
+          Here you can learn about some of my research, and other projects I've been apart of.<span class="caret">_</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 01 ABOUT: notepad ===== -->
+    <section class="win reveal" id="about">
+      <div class="win__bar">
+        <span class="win__title"><span class="win__ico">📄</span> readme.txt — Notepad</span>
+        <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
+      </div>
+      <div class="win__menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span></div>
+      <div class="win__body win__body--pad">
+        <div class="about">
+          <div class="notepad">
+            <p class="notepad__head">ABOUT</p>
+            <p>I have been fascinated by outer space for as long as I can remember, and more generally, 
+              I have been curious about how and why the world around me behaves the way it does.
+              This naturally led me to completing my BSc in Physics (2020&ndash;2023) from the University of Melbourne.</p>
+            <p>I continued on to the Australian National University, where I
+              earned my Honours degree at the Research School of Astronomy &amp;
+              Astrophysics (2024&ndash;2025). My thesis focused on the evolution of quiescent galaxies, and I have since been
+              fortunate enough to persue a first author publication to MNRAS (in preperation). You can read more about my research below.</p>
+            <p>With Honours wrapped up, I begin the transition into the next part of my life. 
+              Both research and coursework in a very technical field have provided an excellent framework for thinking
+              and problem solving that I'm confident will apply to whichever endearvour I choose to persue. 
+              Away from the data, you'll typically find me ...</p>
+
+            <p class="notepad__head">Education</p>
+            <div class="affil">
+              <a class="logo95" href="https://www.anu.edu.au/" target="_blank" rel="noopener">
+                <span class="logo95__plate"><img src="assets/logos/anu.png" alt="Australian National University logo" /></span>
+                <span class="logo95__txt">Australian National University<br /><i>Honours · Astronomy &amp; Astrophysics · 2024–2025</i></span>
+              </a>
+              <a class="logo95" href="https://www.unimelb.edu.au/" target="_blank" rel="noopener">
+                <span class="logo95__plate"><img src="assets/logos/uom.png" alt="University of Melbourne logo" /></span>
+                <span class="logo95__txt">The University of Melbourne<br /><i>BSc · Physics · 2020–2023</i></span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact: System Properties dialog -->
+          <aside class="dialog">
+            <div class="dialog__bar">Contact — Properties</div>
+            <div class="dialog__body">
+              <p class="dialog__name">Elias Luke Gastis</p>
+              <p class="dialog__role">Melbourne, VIC, Australia</p>
+              <dl class="dialog__list">
+                <dt>Email</dt><dd><a href="mailto:eligastis@gmail.com">eligastis@gmail.com</a></dd>
+                <dt>Phone</dt><dd><a href="tel:+61424944456">(+61) 424 944 456</a></dd>
+                <dt>GitHub</dt><dd><a href="https://github.com/el1as-gastis" target="_blank" rel="noopener">@el1as-gastis</a></dd>
+                <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/elias-gastis-24728425b/" target="_blank" rel="noopener">elias-gastis</a></dd>
+              </dl>
+              <a href="assets/gastis_CV.pdf" class="btn95 btn95--wide" target="_blank" rel="noopener">💾 Download CV</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 RESEARCH ===== -->
+    <section class="win reveal" id="research">
+      <div class="win__bar">
+        <span class="win__title"><span class="win__ico">🔬</span> research.exe</span>
+        <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
+      </div>
+      <div class="win__body win__body--pad">
+        <div class="research-para">
+          <p>
+            Most of the galaxies in
+            the background of this webpage don't look too much like our own Milky Way. They are most
+            often found in galaxy groups and clusters, and unlike the Milky Way, they lack spiral arms
+            and don't actively form stars. Despite their reputation of being completely devoid of molecular gas, the fuel for star formation,
+            recent discoveries have determined that these galaxies still contain trace amounts that co-evolve with
+            their host galaxies across cosmic time. 
+          </p>
+          <p>
+          During my time at RSAA, I worked as part of the MAGPI research group to investigate
+          the molecular gas content of these elliptical 'quiescent galaxies' (QGs). Probing the interstellar-medium
+          of these galaxies helps us understand when and how their star-formation ceased, and remains an open question today.
+          My research combined data from the world's most powerful radio interferometer (ALMA), and draws on 
+          integral-field data collected by the MUSE instrument on the world's most 
+          advanced optical observatory (VLT), to provide original constraints of the molecular gas content of QGs at z ~ 0.3.
+          </p>
+        </div>
+
+        <p class="field-label">▶ Facilities</p>
+        <div class="logostrip" aria-label="Facilities">
+          <a class="logostrip__plate" href="http://magpisurvey.org/" target="_blank" rel="noopener" title="Visit the MAGPI survey homepage">
+            <img src="assets/logos/magpi.png" alt="MAGPI survey logo" />
+            <span class="logostrip__name">MAGPI</span>
+          </a>
+          <a class="logostrip__plate" href="https://www.almaobservatory.org/" target="_blank" rel="noopener" title="Visit the ALMA observatory homepage">
+            <img src="assets/logos/alma.png" alt="ALMA logo" />
+            <span class="logostrip__name">ALMA</span>
+          </a>
+          <a class="logostrip__plate" href="https://www.eso.org/public/teles-instr/paranal-observatory/vlt/" target="_blank" rel="noopener" title="Visit the ESO Very Large Telescope homepage">
+            <img src="assets/logos/eso.png" alt="ESO Very Large Telescope logo" />
+            <span class="logostrip__name">VLT</span>
+          </a>
+        </div>
+
+        <p class="field-label">▶ Publications</p>
+        <article class="paper95">
+          <div class="paper95__bar">first_author_paper.doc</div>
+          <div class="paper95__body">
+            <p class="paper95__tag">★ FIRST AUTHOR · MNRAS · 2026 · in prep.</p>
+            <h4 class="paper95__title">Molecular Gas Fractions of Early-Type Galaxies at <em>z</em>&nbsp;∼&nbsp;0.3 from the MAGPI Survey</h4>
+            <p class="paper95__authors"><strong>E. Gastis</strong>, E. Wisnioski, and the MAGPI team</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 03 PROJECTS: explorer ===== -->
+    <section class="win reveal" id="projects">
+      <div class="win__bar">
+        <span class="win__title"><span class="win__ico">📁</span> My Projects — Explorer</span>
+        <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
+      </div>
+      <div class="win__menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+      <div class="win__addr"><span>Address</span><div class="win__addr-box">C:\Projects\</div></div>
+      <div class="win__body win__body--explorer">
+        <a class="file95" href="https://github.com/el1as-gastis/thesis" target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#f7d764" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#ffe98a" stroke="#0a0a0a"/></svg>
+          <span class="file95__name">MAGPI-ALMA</span>
+          <span class="file95__type">Honours thesis · Python</span>
+        </a>
+        <div class="file95 file95--soon" title="S.P.I.D.E.R — lunar rover concept (details coming soon)">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#9fb0c4" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#c8d4e2" stroke="#0a0a0a"/></svg>
+          <span class="file95__name">S.P.I.D.E.R</span>
+          <span class="file95__type">Lunar rover · concept</span>
+        </div>
+      </div>
+      <div class="win__status"><span>2 object(s)</span><span>github.com/el1as-gastis</span></div>
+    </section>
+  </main>
+
+  <!-- ===== Galaxy3D app — floating Win95 window ===== -->
+  <section class="appwin" id="galaxyApp" aria-label="3D spiral galaxy simulator" hidden>
+    <div class="appwin__bar" id="galaxyBar">
+      <span class="win__title"><span class="win__ico">🌌</span> galaxy3d.exe — Spiral Galaxy Simulator</span>
+      <span class="win__btns">
+        <button class="appbtn" type="button" data-act="min" aria-label="Minimize">_</button>
+        <button class="appbtn" type="button" data-act="max" aria-label="Maximize">□</button>
+        <button class="appbtn x" type="button" data-act="close" aria-label="Close">✕</button>
+      </span>
+    </div>
+    <div class="appwin__menu">
+      <span><u>F</u>ile</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      <span class="appwin__menu-sp"></span>
+      <button class="btn95" type="button" id="galaxyRotate">⟳ Rotation: On</button>
+      <button class="btn95" type="button" id="galaxyReset">⌂ Reset view</button>
+    </div>
+    <div class="appwin__body">
+      <canvas id="galaxyCanvas"></canvas>
+      <div class="appwin__loading" id="galaxyLoading">Booting galaxy3d.exe…</div>
+      <p class="appwin__hud">drag&nbsp;to&nbsp;orbit&nbsp;·&nbsp;scroll&nbsp;to&nbsp;zoom</p>
+    </div>
+    <div class="appwin__status">
+      <span>4-arm log spiral · flat rotation curve · monochrome</span>
+      <span>WebGL · Three.js</span>
+    </div>
+  </section>
+
+  <!-- ===== Recycle Bin — floating Win95 window ===== -->
+  <section class="appwin appwin--bin" id="binApp" aria-label="Recycle Bin" hidden>
+    <div class="appwin__bar" id="binBar">
+      <span class="win__title"><span class="win__ico">🗑</span> Recycle Bin</span>
+      <span class="win__btns">
+        <button class="appbtn" type="button" data-act="min" aria-label="Minimize">_</button>
+        <button class="appbtn" type="button" data-act="max" aria-label="Maximize">□</button>
+        <button class="appbtn x" type="button" data-act="close" aria-label="Close">✕</button>
+      </span>
+    </div>
+    <div class="appwin__menu">
+      <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      <span class="appwin__menu-sp"></span>
+      <button class="btn95" type="button" id="binEmpty">🗑 Empty Recycle Bin</button>
+      <button class="btn95" type="button" id="binRestore">↩ Restore</button>
+    </div>
+    <div class="win__addr"><span>Address</span><div class="win__addr-box">C:\RECYCLED\</div></div>
+    <div class="appwin__body appwin__body--bin">
+      <div class="bin-grid">
+        <!-- Recovered (downloadable) drafts -->
+        <a class="file95" href="assets/recycle/thesis_draft_v1.pdf" download>
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="5" y="18" width="22" height="9" rx="1" fill="#c01818" stroke="#0a0a0a"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#fff">PDF</text></svg>
+          <span class="file95__name">thesis_draft_v1.pdf</span>
+          <span class="file95__type">Deleted · 1 of 12</span>
+        </a>
+        <a class="file95" href="assets/recycle/thesis_FINAL_v12_USE_THIS_ONE.pdf" download>
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="5" y="18" width="22" height="9" rx="1" fill="#c01818" stroke="#0a0a0a"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#fff">PDF</text></svg>
+          <span class="file95__name">thesis_FINAL_v12_USE_THIS_ONE.pdf</span>
+          <span class="file95__type">Deleted · not final</span>
+        </a>
+        <a class="file95" href="assets/recycle/rejected_ALMA_proposal.pdf" download>
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="5" y="18" width="22" height="9" rx="1" fill="#c01818" stroke="#0a0a0a"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#fff">PDF</text></svg>
+          <span class="file95__name">rejected_ALMA_proposal.pdf</span>
+          <span class="file95__type">Deleted · 0 hours</span>
+        </a>
+        <a class="file95" href="assets/recycle/referee_2_comments.pdf" download>
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="5" y="18" width="22" height="9" rx="1" fill="#c01818" stroke="#0a0a0a"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#fff">PDF</text></svg>
+          <span class="file95__name">referee_2_comments.pdf</span>
+          <span class="file95__type">Deleted · -1 star</span>
+        </a>
+
+        <!-- Easter eggs (open a dialog; nothing to download) -->
+        <button class="file95" type="button" data-egg="donotopen">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="10" y="14" width="12" height="2" fill="#c01818"/><rect x="10" y="18" width="12" height="2" fill="#c01818"/><rect x="10" y="22" width="8" height="2" fill="#c01818"/></svg>
+          <span class="file95__name">DO_NOT_OPEN.txt</span>
+          <span class="file95__type">Deleted · do not</span>
+        </button>
+        <button class="file95" type="button" data-egg="passwords">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="11" y="17" width="10" height="8" rx="1" fill="#ffcf4d" stroke="#0a0a0a"/><path d="M13 17v-2a3 3 0 0 1 6 0v2" fill="none" stroke="#0a0a0a" stroke-width="1.4"/></svg>
+          <span class="file95__name">passwords.txt</span>
+          <span class="file95__type">Deleted · 1 KB</span>
+        </button>
+        <button class="file95" type="button" data-egg="grant">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><rect x="9" y="15" width="14" height="11" fill="#1f8a4c" stroke="#0a0a0a"/><path d="M9 19h14M9 22h14M14 15v11M18 15v11" stroke="#fff" stroke-width="0.9"/></svg>
+          <span class="file95__name">grant_funding.xls</span>
+          <span class="file95__type">Deleted · 0 KB</span>
+        </button>
+        <button class="file95" type="button" data-egg="motivation">
+          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M7 2h13l6 6v22H7z" fill="#fff" stroke="#0a0a0a"/><path d="M20 2v6h6" fill="#d8d8d8" stroke="#0a0a0a"/><circle cx="16" cy="21" r="4.5" fill="none" stroke="#444" stroke-width="1.6"/><path d="M16 14.5v2M16 25.5v2M9.5 21h2M20.5 21h2M11.6 16.6l1.4 1.4M19 23l1.4 1.4M20.4 16.6 19 18M13 23l-1.4 1.4" stroke="#444" stroke-width="1.4"/></svg>
+          <span class="file95__name">motivation.dll</span>
+          <span class="file95__type">Deleted · missing</span>
+        </button>
+      </div>
+    </div>
+    <div class="appwin__status">
+      <span id="binCount">8 object(s)</span>
+      <span>Free space: ∞ (it's all junk)</span>
+    </div>
+  </section>
+
+  <!-- ===== Today in Space (NASA APOD) — floating window ===== -->
+  <section class="appwin appwin--apod" id="apodApp" aria-label="NASA Astronomy Picture of the Day" hidden>
+    <div class="appwin__bar" id="apodBar">
+      <span class="win__title"><span class="win__ico">🛰</span> Today in Space — NASA APOD</span>
+      <span class="win__btns">
+        <button class="appbtn" type="button" data-act="min" aria-label="Minimize">_</button>
+        <button class="appbtn" type="button" data-act="max" aria-label="Maximize">□</button>
+        <button class="appbtn x" type="button" data-act="close" aria-label="Close">✕</button>
+      </span>
+    </div>
+    <div class="appwin__menu">
+      <span><u>F</u>ile</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      <span class="appwin__menu-sp"></span>
+      <button class="btn95" type="button" id="apodReload">⟳ Refresh</button>
+    </div>
+    <div class="appwin__body appwin__body--apod">
+      <div class="apod" id="apodContent">
+        <div class="apod__loading">Astronomy Picture of the Day</div>
+      </div>
+    </div>
+    <div class="appwin__status">
+      <span id="apodDate">—</span>
+      <span>Source: NASA APOD</span>
+    </div>
+  </section>
+
+  <!-- ===== asteroids.exe — floating game window ===== -->
+  <section class="appwin appwin--game" id="asteroidsApp" aria-label="Asteroids game" hidden>
+    <div class="appwin__bar" id="asteroidsBar">
+      <span class="win__title"><span class="win__ico">🚀</span> asteroids.exe</span>
+      <span class="win__btns">
+        <button class="appbtn" type="button" data-act="min" aria-label="Minimize">_</button>
+        <button class="appbtn" type="button" data-act="max" aria-label="Maximize">□</button>
+        <button class="appbtn x" type="button" data-act="close" aria-label="Close">✕</button>
+      </span>
+    </div>
+    <div class="appwin__menu">
+      <span><u>G</u>ame</span><span><u>H</u>elp</span>
+      <span class="appwin__menu-sp"></span>
+      <button class="btn95" type="button" id="asteroidsNew">✦ New game</button>
+    </div>
+    <div class="appwin__body appwin__body--game">
+      <canvas id="asteroidsCanvas"></canvas>
+      <p class="appwin__hud">←&nbsp;→&nbsp;rotate&nbsp;·&nbsp;↑&nbsp;thrust&nbsp;·&nbsp;space&nbsp;fire</p>
+    </div>
+    <div class="appwin__status">
+      <span id="asteroidsScore">Score: 0</span>
+      <span id="asteroidsLives">Ships: 3</span>
+    </div>
+  </section>
+
+  <!-- ===== Clippy — the Office Assistant ===== -->
+  <div class="clippy" id="clippy" hidden>
+    <div class="clippy__bubble" id="clippyBubble" role="status" hidden>
+      <button class="clippy__x" id="clippyClose" type="button" aria-label="Hide message">✕</button>
+      <p class="clippy__text" id="clippyText"></p>
+      <div class="clippy__actions">
+        <button class="btn95" type="button" id="clippyNext">Next tip »</button>
+        <button class="btn95" type="button" id="clippyBye">Go away</button>
+      </div>
+    </div>
+    <button class="clippy__char" id="clippyChar" type="button" aria-label="Clippy the assistant">
+      <svg viewBox="0 0 64 92" class="clippy__svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="clipWire" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#eef0f4"/>
+            <stop offset=".5" stop-color="#9aa3ad"/>
+            <stop offset="1" stop-color="#565d66"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 40 C20 18 48 18 48 40 L48 74 C48 86 26 86 26 74 L26 36 C26 26 38 26 38 36 L38 66"
+              fill="none" stroke="url(#clipWire)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M23 25 L33 30 M45 25 L35 30" stroke="#2a2f36" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <ellipse cx="29" cy="37" rx="6" ry="7.6" fill="#fff" stroke="#2a2f36" stroke-width="2"/>
+        <ellipse cx="39" cy="37" rx="6" ry="7.6" fill="#fff" stroke="#2a2f36" stroke-width="2"/>
+        <circle cx="30.6" cy="38.4" r="2.4" fill="#1a1f26"/>
+        <circle cx="40.6" cy="38.4" r="2.4" fill="#1a1f26"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ===== Start menu ===== -->
+  <nav class="startmenu" id="startMenu" hidden>
+    <div class="startmenu__side">Elias&nbsp;Gastis<span>95</span></div>
+    <ul class="startmenu__list">
+      <li><a href="#about">📄&nbsp; About</a></li>
+      <li><a href="#research">🔬&nbsp; Research</a></li>
+      <li><a href="#projects">📁&nbsp; Projects</a></li>
+      <li><a href="#" id="startGalaxy">🌌&nbsp; Galaxy3D</a></li>
+      <li><a href="#" id="startApod">🛰&nbsp; Today in Space</a></li>
+      <li><a href="#" id="startAsteroids">🚀&nbsp; Asteroids</a></li>
+      <li><a href="#" id="startBin">🗑&nbsp; Recycle Bin</a></li>
+      <li class="startmenu__sep"></li>
+      <li><a href="#" id="startClippy">📎&nbsp; Clippy</a></li>
+      <li><a href="#" id="startSaver">✦&nbsp; Screensaver</a></li>
+      <li class="startmenu__sep"></li>
+      <li><a href="assets/gastis_CV.pdf" target="_blank" rel="noopener">💾&nbsp; Download CV</a></li>
+      <li><a href="https://github.com/el1as-gastis" target="_blank" rel="noopener">🌐&nbsp; GitHub</a></li>
+      <li><a href="mailto:eligastis@gmail.com">✉&nbsp; Email</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Taskbar ===== -->
+  <footer class="taskbar">
+    <button class="start" id="startBtn" aria-haspopup="true" aria-expanded="false">
+      <span class="start__logo">✦</span> Start
+    </button>
+    <div class="taskbar__items">
+      <a href="#about" class="tb" data-target="about">📄 about_me.txt</a>
+      <a href="#research" class="tb" data-target="research">🔬 research.exe</a>
+      <a href="#projects" class="tb" data-target="projects">📁 projects</a>
+      <button type="button" class="tb tb--app" id="galaxyTab" data-target="galaxy" hidden>🌌 galaxy3d.exe</button>
+      <button type="button" class="tb tb--app" id="binTab" data-target="bin" hidden>🗑 Recycle Bin</button>
+      <button type="button" class="tb tb--app" id="apodTab" data-target="apod" hidden>🛰 Today in Space</button>
+      <button type="button" class="tb tb--app" id="asteroidsTab" data-target="asteroids" hidden>🚀 asteroids.exe</button>
+    </div>
+    <div class="tray"><span class="tray__net" aria-hidden="true">🌐</span><span id="clock">12:00 PM</span></div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/recyclebin.js"></script>
+  <script src="js/clippy.js"></script>
+  <script src="js/apod.js"></script>
+  <script src="js/asteroids.js"></script>
+  <script src="js/screensaver.js"></script>
+
+  <!-- galaxy3d.exe — Three.js loaded as ES modules from CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/galaxy.js"></script>
+</body>
+</html>
