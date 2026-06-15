@@ -50,6 +50,11 @@
   icon.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   if (startLi) startLi.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   tab.addEventListener("click", toggleFromTab);
+
+  /* Deep-link: open straight from the URL hash (e.g. …/#asteroids) */
+  function openFromHash() { if (location.hash === "#asteroids") openApp(); }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
   app.querySelectorAll(".appbtn").forEach(function (b) {
     b.addEventListener("click", function () {
       var act = b.dataset.act;
@@ -181,6 +186,30 @@
     }
   });
   window.addEventListener("keyup", function (e) { keys[e.key] = false; });
+
+  /* On-screen touch controls (mobile). Mirror the keyboard state. */
+  var touch = document.getElementById("asteroidsTouch");
+  if (touch) {
+    touch.querySelectorAll(".touchbtn").forEach(function (btn) {
+      var k = btn.dataset.k;
+      function press(e) {
+        e.preventDefault();
+        if (k === "fire") { if (mode === "play") fire(); else newGame(); return; }
+        if (k === "left")   keys.ArrowLeft  = true;
+        if (k === "right")  keys.ArrowRight = true;
+        if (k === "thrust") keys.ArrowUp    = true;
+      }
+      function release() {
+        if (k === "left")   keys.ArrowLeft  = false;
+        if (k === "right")  keys.ArrowRight = false;
+        if (k === "thrust") keys.ArrowUp    = false;
+      }
+      btn.addEventListener("pointerdown", press);
+      btn.addEventListener("pointerup", release);
+      btn.addEventListener("pointerleave", release);
+      btn.addEventListener("pointercancel", release);
+    });
+  }
 
   /* ============================================================
      Update + render

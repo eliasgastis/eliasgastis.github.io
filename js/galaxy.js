@@ -77,6 +77,11 @@ icon.addEventListener("click", (e) => { e.preventDefault(); openApp(); });
 if (startLi) startLi.addEventListener("click", (e) => { e.preventDefault(); openApp(); });
 if (heroLnk) heroLnk.addEventListener("click", (e) => { e.preventDefault(); openApp(); });
 tab.addEventListener("click", toggleFromTab);
+
+/* Deep-link: open straight from the URL hash (e.g. …/#galaxy) */
+function openFromHash() { if (location.hash === "#galaxy") openApp(); }
+window.addEventListener("hashchange", openFromHash);
+openFromHash();
 app.querySelectorAll(".appbtn").forEach((b) => {
   b.addEventListener("click", () => {
     const act = b.dataset.act;

@@ -10,6 +10,12 @@
 (function () {
   "use strict";
 
+  // ── NASA API key ───────────────────────────────────────────────
+  // DEMO_KEY works out of the box but is rate-limited per IP (~30 req/hr,
+  // shared across everyone using DEMO_KEY). Grab a free key in ~30s at
+  // https://api.nasa.gov and paste it below before the site sees real traffic.
+  // If the API is unreachable or rate-limited, we fall back to the last
+  // successfully fetched image (see load() below), so the window never blanks.
   var API_KEY = "DEMO_KEY";
   var ENDPOINT = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY;
   var CACHE_KEY = "space95_apod";
@@ -53,6 +59,11 @@
   icon.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   if (startLi) startLi.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   tab.addEventListener("click", toggleFromTab);
+
+  /* Deep-link: open straight from the URL hash (e.g. …/#apod) */
+  function openFromHash() { if (location.hash === "#apod") openApp(); }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
   app.querySelectorAll(".appbtn").forEach(function (b) {
     b.addEventListener("click", function () {
       var act = b.dataset.act;
@@ -96,12 +107,12 @@
     return e;
   }
 
-  function readCache() {
+  function readCache(ignoreTTL) {
     try {
       var raw = localStorage.getItem(CACHE_KEY);
       if (!raw) return null;
       var c = JSON.parse(raw);
-      if (Date.now() - c.ts > CACHE_TTL) return null;
+      if (!ignoreTTL && Date.now() - c.ts > CACHE_TTL) return null;
       return c.data;
     } catch (e) { return null; }
   }
@@ -118,7 +129,12 @@
     fetch(ENDPOINT)
       .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
       .then(function (data) { writeCache(data); render(data); })
-      .catch(function (err) { showError(err); });
+      .catch(function (err) {
+        // Rate-limited or offline: serve the last good image rather than blank.
+        var stale = readCache(true);
+        if (stale) render(stale);
+        else showError(err);
+      });
   }
 
   function showError() {

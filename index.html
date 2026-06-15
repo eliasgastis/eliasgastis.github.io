@@ -7,9 +7,20 @@
   <meta name="author" content="Elias Gastis" />
   <title>Elias Gastis · Astronomer [Space95]</title>
 
+  <link rel="canonical" href="https://el1as-gastis.github.io/" />
   <meta property="og:title" content="Elias Gastis · Astronomer" />
   <meta property="og:description" content="Molecular gas in early-type galaxies — MAGPI & ALMA. A Windows-95-in-space homepage." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://el1as-gastis.github.io/" />
+  <meta property="og:site_name" content="Elias Gastis" />
+  <meta property="og:image" content="https://el1as-gastis.github.io/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Elias Gastis — Research Astronomer. Molecular gas in early-type galaxies (MAGPI × ALMA), shown as a Windows-95 window over the JWST deep field." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Elias Gastis · Astronomer" />
+  <meta name="twitter:description" content="Molecular gas in early-type galaxies — MAGPI & ALMA. A Windows-95-in-space homepage." />
+  <meta name="twitter:image" content="https://el1as-gastis.github.io/assets/og.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -425,6 +436,16 @@
     <div class="appwin__body appwin__body--game">
       <canvas id="asteroidsCanvas"></canvas>
       <p class="appwin__hud">←&nbsp;→&nbsp;rotate&nbsp;·&nbsp;↑&nbsp;thrust&nbsp;·&nbsp;space&nbsp;fire</p>
+      <div class="touchpad" id="asteroidsTouch">
+        <div class="touchpad__group">
+          <button class="touchbtn" type="button" data-k="left" aria-label="Rotate left">◄</button>
+          <button class="touchbtn" type="button" data-k="right" aria-label="Rotate right">►</button>
+        </div>
+        <div class="touchpad__group">
+          <button class="touchbtn" type="button" data-k="thrust" aria-label="Thrust">▲</button>
+          <button class="touchbtn touchbtn--fire" type="button" data-k="fire" aria-label="Fire / start">●</button>
+        </div>
+      </div>
     </div>
     <div class="appwin__status">
       <span id="asteroidsScore">Score: 0</span>
@@ -517,5 +538,24 @@
   }
   </script>
   <script type="module" src="js/galaxy.js"></script>
+
+  <!-- ============================================================
+       Privacy-friendly analytics — GoatCounter (no cookies, no personal
+       data, GDPR/CCPA-friendly, free for personal sites).
+       TO ACTIVATE: make a free site at https://www.goatcounter.com/ and
+       replace "YOURCODE" below with your site code. Until then this makes
+       NO network requests and logs nothing.
+       ============================================================ -->
+  <script>
+    (function () {
+      var CODE = "YOURCODE";              /* ← your goatcounter.com site code */
+      if (CODE === "YOURCODE") return;    /* inert until configured */
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "//gc.zgo.at/count.js";
+      s.setAttribute("data-goatcounter", "https://" + CODE + ".goatcounter.com/count");
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

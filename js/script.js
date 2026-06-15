@@ -3,6 +3,9 @@
    ============================================================ */
 (function () {
   "use strict";
+  /* Enable the hide-then-reveal animation only now that JS is actually running.
+     Without this class, .reveal sections stay visible (no-JS / load failure). */
+  document.documentElement.classList.add("js-reveal");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Starfield (the desktop wallpaper) ---------- */
@@ -124,4 +127,33 @@
     }, { rootMargin: "-40% 0px -55% 0px" });
     sections.forEach(function (s) { spy.observe(s); });
   }
+
+  /* ---------- a11y: Space activates link-buttons (desktop icons) ---------- */
+  document.querySelectorAll('a[role="button"]').forEach(function (a) {
+    a.addEventListener("keydown", function (e) {
+      if (e.key === " " || e.key === "Spacebar") { e.preventDefault(); a.click(); }
+    });
+  });
+
+  /* ---------- a11y: focus management for app windows ----------
+     Centralised here so the individual app scripts only toggle [hidden].
+     On open, move focus into the window; on close, return it to whatever
+     opened it (desktop icon / Start-menu item / taskbar button). */
+  var lastTrigger = null;
+  document.addEventListener("pointerdown", function (e) {
+    var t = e.target.closest(".dsk, .startmenu__list a, .tb");
+    if (t) lastTrigger = t;
+  }, true);
+  document.querySelectorAll(".appwin").forEach(function (win) {
+    if (!win.hasAttribute("tabindex")) win.setAttribute("tabindex", "-1");
+    new MutationObserver(function () {
+      if (win.hidden) {
+        if (document.activeElement === document.body || win.contains(document.activeElement)) {
+          if (lastTrigger && document.contains(lastTrigger)) lastTrigger.focus();
+        }
+      } else {
+        win.focus();
+      }
+    }).observe(win, { attributes: true, attributeFilter: ["hidden"] });
+  });
 })();

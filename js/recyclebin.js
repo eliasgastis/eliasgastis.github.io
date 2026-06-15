@@ -65,6 +65,11 @@
   icon.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   if (startLi) startLi.addEventListener("click", function (e) { e.preventDefault(); openApp(); });
   tab.addEventListener("click", toggleFromTab);
+
+  /* Deep-link: open straight from the URL hash (e.g. …/#bin) */
+  function openFromHash() { if (location.hash === "#bin") openApp(); }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
   app.querySelectorAll(".appbtn").forEach(function (b) {
     b.addEventListener("click", function () {
       var act = b.dataset.act;
@@ -108,6 +113,7 @@
      ============================================================ */
   function showDialog(opts) {
     var buttons = (opts.buttons && opts.buttons.length) ? opts.buttons : [{ label: "OK" }];
+    var opener = document.activeElement;   // restore focus here when the dialog closes
 
     var overlay = document.createElement("div");
     overlay.className = "msgbox";
@@ -147,9 +153,17 @@
     function close() {
       overlay.remove();
       document.removeEventListener("keydown", onKey);
+      if (opener && document.contains(opener) && typeof opener.focus === "function") opener.focus();
     }
     function onKey(e) {
-      if (e.key === "Escape") { e.stopPropagation(); close(); }
+      if (e.key === "Escape") { e.stopPropagation(); close(); return; }
+      if (e.key !== "Tab") return;
+      // Trap Tab focus inside the modal.
+      var f = overlay.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
 
     var primaryBtn = null, firstBtn = null;
