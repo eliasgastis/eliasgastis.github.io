@@ -189,39 +189,98 @@
           </a>
         </div>
 
-        <p class="field-label">▶ Publications</p>
-        <article class="paper95">
-          <div class="paper95__bar">first_author_paper.doc</div>
-          <div class="paper95__body">
-            <p class="paper95__tag">★ FIRST AUTHOR · MNRAS · 2026 · in prep.</p>
-            <h4 class="paper95__title">Molecular Gas Fractions of Early-Type Galaxies at <em>z</em>&nbsp;∼&nbsp;0.3 from the MAGPI Survey</h4>
-            <p class="paper95__authors"><strong>E. Gastis</strong>, E. Wisnioski, and the MAGPI team</p>
-          </div>
-        </article>
+        <p class="field-label">▶ Publication &amp; code</p>
+        <div class="pubrow">
+          <article class="paper95">
+            <div class="paper95__bar">first_author_paper.doc</div>
+            <div class="paper95__body">
+              <p class="paper95__tag">★ FIRST AUTHOR · MNRAS · 2026 · in prep.</p>
+              <h4 class="paper95__title">Molecular Gas Fractions of Early-Type Galaxies at <em>z</em>&nbsp;∼&nbsp;0.3 from the MAGPI Survey</h4>
+              <p class="paper95__authors"><strong>E. Gastis</strong>, E. Wisnioski, and the MAGPI team</p>
+            </div>
+          </article>
+          <a class="file95 file95--card" href="https://github.com/el1as-gastis/thesis" target="_blank" rel="noopener" title="Thesis code on GitHub">
+            <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#f7d764" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#ffe98a" stroke="#0a0a0a"/></svg>
+            <span class="file95__name">MAGPI-ALMA</span>
+            <span class="file95__type">Honours thesis · Python</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- ===== 03 PROJECTS: explorer ===== -->
+    <!-- ===== 03 PROJECTS: SPIDER ===== -->
     <section class="win reveal" id="projects">
       <div class="win__bar">
-        <span class="win__title"><span class="win__ico">📁</span> My Projects — Explorer</span>
+        <span class="win__title"><span class="win__ico">🕷</span> SPIDER — Lunar Ice Rover</span>
         <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
       </div>
       <div class="win__menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
-      <div class="win__addr"><span>Address</span><div class="win__addr-box">C:\Projects\</div></div>
-      <div class="win__body win__body--explorer">
-        <a class="file95" href="https://github.com/el1as-gastis/thesis" target="_blank" rel="noopener">
-          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#f7d764" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#ffe98a" stroke="#0a0a0a"/></svg>
-          <span class="file95__name">MAGPI-ALMA</span>
-          <span class="file95__type">Honours thesis · Python</span>
-        </a>
-        <div class="file95 file95--soon" title="S.P.I.D.E.R — lunar rover concept (details coming soon)">
-          <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#9fb0c4" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#c8d4e2" stroke="#0a0a0a"/></svg>
-          <span class="file95__name">S.P.I.D.E.R</span>
-          <span class="file95__type">Lunar rover · concept</span>
+      <div class="win__body win__body--pad">
+        <div class="proj-hero">
+          <svg viewBox="0 0 152 130" class="proj-hero__rover" role="img" aria-label="Illustration of the SPIDER rover as a leaping four-legged robot with a gold-foil body and a side solar panel, drawn in the site's retro style.">
+           <g transform="rotate(-9 76 66)">
+            <!-- hind-left leg (behind body), trailing back -->
+            <path d="M72 61 L90 60 L106 66" fill="none" stroke="#828c9c" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- body: gold top, right solar wall, gold front face -->
+            <g stroke-linejoin="round">
+              <polygon points="28,46 68,30 102,47 62,63" fill="#f2cf63" stroke="#6a5320" stroke-width="1.8"/>
+              <polygon points="62,63 102,47 102,77 62,93" fill="#1b2a4a" stroke="#6a7da4" stroke-width="1.8"/>
+              <polygon points="28,46 62,63 62,93 28,76" fill="#e0ad3f" stroke="#6a5320" stroke-width="1.8"/>
+            </g>
+            <!-- solar grid + one lit cell -->
+            <polygon points="75,58 88,52 88,63 75,68" fill="#1d5a72"/>
+            <g stroke="#5679b0" stroke-width="1" fill="none">
+              <path d="M75 58 L75 88"/><path d="M88 52 L88 82"/>
+              <path d="M62 73 L102 57"/><path d="M62 83 L102 67"/>
+            </g>
+            <!-- gold-foil (MLI) creases -->
+            <g stroke="#b07d28" stroke-width="1" fill="none" opacity=".7">
+              <path d="M35 52 L35 72"/><path d="M28 60 L46 70"/>
+            </g>
+            <!-- front legs reach forward-down; hind-right trails back -->
+            <g fill="none" stroke="#9aa3b2" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M34 74 L21 85 L13 101"/>
+              <path d="M58 90 L46 103 L40 119"/>
+              <path d="M98 77 L117 76 L133 82"/>
+            </g>
+            <!-- feet -->
+            <g fill="#23272f">
+              <ellipse cx="13" cy="102" rx="3.3" ry="1.5"/>
+              <ellipse cx="40" cy="120" rx="3.3" ry="1.5"/>
+              <ellipse cx="133" cy="83" rx="3" ry="1.4"/>
+              <ellipse cx="106" cy="67" rx="3" ry="1.3"/>
+            </g>
+            <!-- hip + knee joints -->
+            <g><circle cx="34" cy="74" r="2.6" fill="#f2cf63" stroke="#6a5320" stroke-width="1"/>
+               <circle cx="58" cy="90" r="2.6" fill="#f2cf63" stroke="#6a5320" stroke-width="1"/>
+               <circle cx="98" cy="77" r="2.6" fill="#f2cf63" stroke="#6a5320" stroke-width="1"/></g>
+            <g fill="#cfd6df"><circle cx="21" cy="85" r="1.7"/><circle cx="46" cy="103" r="1.7"/><circle cx="117" cy="76" r="1.7"/></g>
+           </g>
+          </svg>
+          <div class="proj-hero__meta">
+            <h3 class="proj-hero__title">S.P.I.D.E.R</h3>
+            <p class="proj-hero__full">Shadowed Polar Ice Discovery &amp; Exploration Rover</p>
+            <p class="proj-hero__tags"><span class="role-badge">★ Lead Scientist</span> Milo&nbsp;Mission&nbsp;Academy 2024</p>
+          </div>
+          <a class="file95 file95--card" href="assets/SPIDER_PDR.pdf" target="_blank" rel="noopener" download title="Download the SPIDER Preliminary Design Review (PDF, 37 MB)">
+            <svg viewBox="0 0 32 32" class="file95__icon" aria-hidden="true"><path d="M2 7h9l2 3h17v17H2z" fill="#3b5bbf" stroke="#0a0a0a"/><path d="M2 10h28v17H2z" fill="#6d9eff" stroke="#0a0a0a"/><path d="M16 14v7M12.5 17.5 16 21l3.5-3.5" fill="none" stroke="#0a1230" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="file95__name">SPIDER_PDR</span>
+            <span class="file95__type">Design Review · PDF</span>
+          </a>
+        </div>
+
+        <p class="field-label">▶ The Milo Mission Academy</p>
+        <div class="research-para">
+          <p>In 2024 I took part in the <a href="https://www.arose.org.au/milo/" target="_blank" rel="noopener">Milo Mission Academy</a>, a 12-week space-workforce training program run by Arizona State University's Milo Space Science Institute in partnership with AROSE (Australian Remote Operations for Space and Earth). The program offered students from across Oceania the chance to work in multidisciplinary teams, and to design a lunar mission end-to-end, following the formal design reviews used in the NASA space mission life-cycle. Along the way we heard from experts across a breadth of discplines in NASA mission planning, and learnt about the key challenges and considerations present in one of the most extreme locations in our solar system, the permanently shadowed terrain at the lunar south pole.</p>
+        </div>
+
+        <p class="field-label">▶ The SPIDER mission</p>
+        <div class="research-para">
+          <p>SPIDER is a concept lunar rover designed to characterise water-ice and other volatiles preserved within the permanently shadowed regions of the Moon's south pole. Such deposits are central to NASA's Artemis program: water-ice that can be utilised <em>in situ</em> — as drinking water, breathable oxygen and rocket propellant — is a prerequisite for establishing a sustained human presence on the lunar surface. The mission's objective is to determine the distribution, abundance and origin of these volatiles.</p>
+          <p>In place of conventional wheels, SPIDER employs a four-legged, hopping locomotion system, drawing on recent advances in legged robotics. This quadrupedal approach is intended to negotiate the steep crater rims and unstable, permanently shadowed terrain that would prove impassable to a wheeled platform.</p>
+          <p class="proj-role"><strong>As Lead Scientist</strong>, I defined the mission's science narrative — the rationale for what SPIDER needed to determine, and why. From this I derived the observables required to address those questions, which in turn informed the selection of the science payload and the performance requirements it was designed to meet.</p>
         </div>
       </div>
-      <div class="win__status"><span>2 object(s)</span><span>github.com/el1as-gastis</span></div>
     </section>
   </main>
 
