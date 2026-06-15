@@ -104,6 +104,15 @@ main { padding: 0 16px; }
 }
 .win__btns .x { font-size: 13px; }
 
+/* Draggable content windows: grab the title bar, release to spring home.
+   Scoped to .drag-windows (added by drag.js) so the cursor + touch-action
+   only appear when the behaviour is actually live. touch-action:none keeps a
+   title-bar drag from scrolling the page on touch screens. */
+.drag-windows .win__bar { cursor: grab; touch-action: none; }
+.drag-windows .win--dragging,
+.drag-windows .win--dragging .win__bar { cursor: grabbing; }
+.win--dragging { box-shadow: 0 14px 30px rgba(0,0,0,.45), var(--bevel-out); }
+
 /* Menu bar */
 .win__menu { display: flex; gap: 16px; padding: 3px 8px; font-size: 18px; background: var(--silver); }
 .win__menu span { cursor: default; }
@@ -120,7 +129,7 @@ main { padding: 0 16px; }
 .win__body--pad { padding: 20px; }
 
 /* ---------- HERO terminal ---------- */
-.win--hero { max-width: 920px; }
+.win--hero { max-width: 880px; }   /* match the other windows */
 .win__body--term {
   background: #04060f; color: var(--green); padding: 30px 26px;
   box-shadow: var(--bevel-in); margin: 3px;

@@ -20,13 +20,12 @@
   var INTRO = "Hi! I'm Clippy. It looks like you're visiting an astronomer's " +
               "website. Would you like some help getting around?";
   var TIPS = [
-    "It looks like you're trying to learn about molecular gas. The Research window has you covered — just scroll down.",
-    "Psst… there's a real 3-D galaxy hiding in your Start menu. Go on, give it a spin.",
+    "It looks like you're trying to learn about galaxy evolution. The Research window has you covered — just scroll down.",
+    "Psst… there's a spiral galaxy simulation hiding in your Start menu. Go on, give it a spin.",
     "I'd steer clear of the Recycle Bin if I were you. There's a file in there you're absolutely not supposed to open.",
-    "It looks like you're writing a thesis. Would you like me to name it FINAL_v12 and misplace the real one?",
     "Fun fact: the wallpaper is a genuine JWST deep field. Almost every speck is an entire galaxy.",
     "It looks like you're hiring. What a coincidence — Elias is looking!",
-    "Stand still long enough and the stars come out. (Try not touching anything for a minute.)"
+    "Stand still long enough and you'll start travelling at the speed of light."
   ];
 
   var idx = -1;          // -1 = intro not shown yet

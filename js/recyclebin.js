@@ -1,8 +1,8 @@
 /* ============================================================
    Space95 — Recycle Bin
-   A draggable Win95 explorer window full of "deleted" files:
-   four downloadable joke PDFs (old/rejected drafts) plus a few
-   easter-egg files that pop witty message boxes.
+   A draggable Win95 explorer window full of "deleted" files —
+   joke drafts and easter-egg files that each pop a witty message
+   box (nothing actually downloads).
 
    Self-contained plain script. Reuses the .appwin / .appbtn /
    .file95 / .btn95 styles and mirrors galaxy3d.exe's window
@@ -198,6 +198,36 @@
      4. Easter-egg files — clicking opens a witty dialog
      ============================================================ */
   var EGGS = {
+    thesisdraft: function () {
+      showDialog({
+        title: "thesis_draft_v1.pdf",
+        icon: "📄",
+        body: "<p>Draft <b>1 of 12</b>. The abstract alone went through more revisions " +
+              "than the galaxies it describes.</p>" +
+              "<p>You don't want this version — trust me. The good stuff lives in the " +
+              "Research window.</p>"
+      });
+    },
+    thesisfinal: function () {
+      showDialog({
+        title: "thesis_FINAL_v12_USE_THIS_ONE.pdf",
+        icon: "📄",
+        body: "<p>Ah, <b>FINAL_v12_USE_THIS_ONE</b> — not to be confused with " +
+              "<i>FINAL_v13_actual</i>, or <i>FINAL_v12b_real_USE_THIS</i>.</p>" +
+              "<p>No file named &ldquo;final&rdquo; has ever been final. Such is the nature " +
+              "of a thesis.</p>"
+      });
+    },
+    referee: function () {
+      showDialog({
+        title: "referee_2_comments.pdf",
+        icon: "📝",
+        body: "<p>Reviewer 2 has entered the chat.</p>" +
+              "<p>&ldquo;The authors appear unaware of [a paper Reviewer 2 wrote in 2003]. " +
+              "Reject.&rdquo;</p>" +
+              "<p>Deleted for the sake of my own morale.</p>"
+      });
+    },
     donotopen: function () {
       showDialog({
         title: "Warning",
@@ -261,7 +291,7 @@
     showDialog({
       title: "Confirm File Delete",
       icon: "⚠️",
-      body: "<p>Permanently delete all 8 items?</p>" +
+      body: "<p>Permanently delete all 7 items?</p>" +
             "<p>These rejected drafts are, frankly, all I have left.</p>",
       buttons: [
         { label: "Yes", onClick: function () {
