@@ -64,15 +64,6 @@
       </svg>
       <span>Recycle Bin</span>
     </a>
-    <a href="#" class="dsk" id="asteroidsIcon" role="button" aria-label="Play Asteroids">
-      <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
-        <rect x="2" y="3" width="20" height="18" rx="1" fill="#06070f" stroke="#0a0a0a"/>
-        <path d="M8 17 L15 8 L12.5 16 Z" fill="none" stroke="#b9ffe0" stroke-width="1.3" stroke-linejoin="round"/>
-        <path d="M15.5 5 l2 .3 1 2 -.8 2 -2.2 .2 -1.2-1.8 z" fill="none" stroke="#9ad7ff" stroke-width="1"/>
-        <circle cx="6" cy="7" r=".7" fill="#fff"/><circle cx="18" cy="16" r=".7" fill="#fff"/><circle cx="5" cy="17" r=".5" fill="#fff"/>
-      </svg>
-      <span>Asteroids</span>
-    </a>
     <a href="#" class="dsk" id="apodIcon" role="button" aria-label="Open NASA Today in Space">
       <svg viewBox="0 0 24 24" class="dsk__img" aria-hidden="true">
         <rect x="3" y="4" width="18" height="16" rx="1" fill="#dfdfdf" stroke="#0a0a0a"/>
@@ -95,7 +86,7 @@
         <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
       </div>
       <div class="win__body win__body--term">
-        <p class="term__line">C:\HOME&gt; welcome.exe</p>
+        <p class="term__line">C:\HOME&gt; whoami</p>
         <h1 class="term__name">ELIAS LUKE GASTIS</h1>
         <p class="term__sub">Student Astronomer &gt;&gt; Transitioning to Industry</p>
         <p class="term__desc">Hello visitor, thanks for stopping by my webpage! Feel free to have a poke around. 
@@ -106,7 +97,7 @@
     <!-- ===== 01 ABOUT: notepad ===== -->
     <section class="win reveal" id="about">
       <div class="win__bar">
-        <span class="win__title"><span class="win__ico">📄</span> readme.txt — Notepad</span>
+        <span class="win__title"><span class="win__ico">📄</span> readme.txt</span>
         <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
       </div>
       <div class="win__menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span></div>
@@ -161,7 +152,7 @@
     <!-- ===== 02 RESEARCH ===== -->
     <section class="win reveal" id="research">
       <div class="win__bar">
-        <span class="win__title"><span class="win__ico">🔬</span> research.exe</span>
+        <span class="win__title"><span class="win__ico">🔬</span> research.dat</span>
         <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
       </div>
       <div class="win__body win__body--pad">
@@ -222,7 +213,7 @@
     <!-- ===== 03 PROJECTS: SPIDER ===== -->
     <section class="win reveal" id="projects">
       <div class="win__bar">
-        <span class="win__title"><span class="win__ico">🕷</span> SPIDER — Lunar Ice Rover</span>
+        <span class="win__title"><span class="win__ico">🕷</span> rover.cad</span>
         <span class="win__btns"><b aria-hidden="true">_</b><b aria-hidden="true">□</b><b class="x" aria-hidden="true">✕</b></span>
       </div>
       <div class="win__menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
@@ -418,41 +409,6 @@
     </div>
   </section>
 
-  <!-- ===== asteroids.exe — floating game window ===== -->
-  <section class="appwin appwin--game" id="asteroidsApp" aria-label="Asteroids game" hidden>
-    <div class="appwin__bar" id="asteroidsBar">
-      <span class="win__title"><span class="win__ico">🚀</span> asteroids.exe</span>
-      <span class="win__btns">
-        <button class="appbtn" type="button" data-act="min" aria-label="Minimize">_</button>
-        <button class="appbtn" type="button" data-act="max" aria-label="Maximize">□</button>
-        <button class="appbtn x" type="button" data-act="close" aria-label="Close">✕</button>
-      </span>
-    </div>
-    <div class="appwin__menu">
-      <span><u>G</u>ame</span><span><u>H</u>elp</span>
-      <span class="appwin__menu-sp"></span>
-      <button class="btn95" type="button" id="asteroidsNew">✦ New game</button>
-    </div>
-    <div class="appwin__body appwin__body--game">
-      <canvas id="asteroidsCanvas"></canvas>
-      <p class="appwin__hud">←&nbsp;→&nbsp;rotate&nbsp;·&nbsp;↑&nbsp;thrust&nbsp;·&nbsp;space&nbsp;fire</p>
-      <div class="touchpad" id="asteroidsTouch">
-        <div class="touchpad__group">
-          <button class="touchbtn" type="button" data-k="left" aria-label="Rotate left">◄</button>
-          <button class="touchbtn" type="button" data-k="right" aria-label="Rotate right">►</button>
-        </div>
-        <div class="touchpad__group">
-          <button class="touchbtn" type="button" data-k="thrust" aria-label="Thrust">▲</button>
-          <button class="touchbtn touchbtn--fire" type="button" data-k="fire" aria-label="Fire / start">●</button>
-        </div>
-      </div>
-    </div>
-    <div class="appwin__status">
-      <span id="asteroidsScore">Score: 0</span>
-      <span id="asteroidsLives">Ships: 3</span>
-    </div>
-  </section>
-
   <!-- ===== Clippy — the Office Assistant ===== -->
   <div class="clippy" id="clippy" hidden>
     <div class="clippy__bubble" id="clippyBubble" role="status" hidden>
@@ -492,7 +448,6 @@
       <li><a href="#projects">📁&nbsp; Projects</a></li>
       <li><a href="#" id="startGalaxy">🌌&nbsp; Galaxy3D</a></li>
       <li><a href="#" id="startApod">🛰&nbsp; Today in Space</a></li>
-      <li><a href="#" id="startAsteroids">🚀&nbsp; Asteroids</a></li>
       <li><a href="#" id="startBin">🗑&nbsp; Recycle Bin</a></li>
       <li class="startmenu__sep"></li>
       <li><a href="#" id="startClippy">📎&nbsp; Clippy</a></li>
@@ -516,7 +471,6 @@
       <button type="button" class="tb tb--app" id="galaxyTab" data-target="galaxy" hidden>🌌 galaxy3d.exe</button>
       <button type="button" class="tb tb--app" id="binTab" data-target="bin" hidden>🗑 Recycle Bin</button>
       <button type="button" class="tb tb--app" id="apodTab" data-target="apod" hidden>🛰 Today in Space</button>
-      <button type="button" class="tb tb--app" id="asteroidsTab" data-target="asteroids" hidden>🚀 asteroids.exe</button>
     </div>
     <div class="tray"><span class="tray__net" aria-hidden="true">🌐</span><span id="clock">12:00 PM</span></div>
   </footer>
@@ -525,7 +479,6 @@
   <script src="js/recyclebin.js"></script>
   <script src="js/clippy.js"></script>
   <script src="js/apod.js"></script>
-  <script src="js/asteroids.js"></script>
   <script src="js/screensaver.js"></script>
 
   <!-- galaxy3d.exe — Three.js loaded as ES modules from CDN -->

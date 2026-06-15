@@ -17,6 +17,7 @@
   --green:    #2bff9e;
   --amber:    #ffcf4d;
   --space:    #060716;
+  --hover:    #e8eaff;   /* shared light-blue hover for interactable things */
 
   /* raised 3D bevel (window/button face) */
   --bevel-out: inset -1px -1px var(--black), inset 1px 1px var(--white),
@@ -143,6 +144,7 @@ main { padding: 0 16px; }
   background: var(--silver); box-shadow: var(--bevel-out);
   padding: 6px 16px; cursor: pointer; white-space: nowrap;
 }
+.btn95:hover { background: var(--hover); }
 .btn95:active { box-shadow: var(--bevel-in); padding: 7px 15px 5px 17px; }
 .btn95:focus-visible { outline: 1px dotted var(--black); outline-offset: -4px; }
 .btn95--wide { width: 100%; justify-content: center; margin-top: 14px; }
@@ -158,6 +160,7 @@ main { padding: 0 16px; }
 .affil { display: flex; flex-direction: column; gap: 12px; }
 .affil--row { flex-direction: row; flex-wrap: wrap; }
 .logo95 { display: flex; align-items: center; gap: 12px; background: var(--silver); box-shadow: var(--bevel-out); padding: 9px 12px; min-width: 0; }
+.logo95:hover { background: var(--hover); }
 .affil--row .logo95 { flex: 1 1 240px; }
 .logo95__mark {
   font-family: "Press Start 2P"; font-size: 13px; color: #fff;
@@ -193,7 +196,7 @@ main { padding: 0 16px; }
 .logostrip__plate { display: flex; align-items: center; justify-content: center; gap: 14px; background: #fff; box-shadow: var(--bevel-out); padding: 12px 18px; min-height: 70px; flex: 1 1 160px; cursor: pointer; }
 .logostrip__plate img { max-height: 46px; max-width: 90px; width: auto; display: block; }
 .logostrip__name { font-family: "Press Start 2P"; font-size: 14px; color: #111; }
-.logostrip__plate:hover { background: #e8eaff; }
+.logostrip__plate:hover { background: var(--hover); }
 .logostrip__plate:hover .logostrip__name { color: var(--navy); }
 .logostrip__plate:active { box-shadow: var(--bevel-in); padding: 13px 17px 11px 19px; }
 .inl { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; background: #fff; box-shadow: var(--bevel-out); padding: 3px 9px 3px 6px; margin: 0 3px; font-size: 16px; color: #111; line-height: 1; }
@@ -219,9 +222,9 @@ main { padding: 0 16px; }
 .file95__icon { width: 52px; height: 52px; }
 .file95__name { font-size: 18px; color: #111; }
 .file95__type { font-size: 15px; color: #666; }
-.file95:hover { background: var(--navy); }
-.file95:hover .file95__name, .file95:hover .file95__type { color: #fff; }
-.file95:hover .file95__name { outline: 1px dotted #fff; }
+.file95:hover { background: var(--hover); }
+.file95:hover .file95__name { color: var(--navy); outline: 1px dotted var(--navy); }
+.file95:hover .file95__type { color: #333; }
 
 /* ---------- Start menu ---------- */
 .startmenu {
@@ -404,32 +407,6 @@ button.file95 { border: 0; background: none; font: inherit; cursor: pointer; col
 .apod__source a { color: var(--cyan); text-decoration: underline; font-size: 17px; }
 .apod__source a:hover { color: var(--magenta); }
 
-/* ---------- asteroids.exe ---------- */
-.appwin--game { width: min(760px, 92vw); height: min(620px, 82vh); }
-.appwin__body--game { background: #04060f; }
-#asteroidsCanvas { display: block; width: 100%; height: 100%; touch-action: none; }
-
-/* On-screen touch controls — only shown for touch / coarse-pointer devices */
-.touchpad { display: none; }
-@media (pointer: coarse) {
-  .touchpad {
-    position: absolute; inset: auto 0 0 0; z-index: 4;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    padding: 14px 18px 18px; pointer-events: none;
-  }
-  .touchpad__group { display: flex; gap: 14px; pointer-events: auto; }
-  .touchbtn {
-    width: 62px; height: 62px; border: 0; border-radius: 50%;
-    background: rgba(56, 224, 230, .14); box-shadow: inset 0 0 0 2px rgba(185, 255, 224, .5);
-    color: #b9ffe0; font-size: 24px; line-height: 1; display: grid; place-items: center;
-    touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
-  }
-  .touchbtn:active { background: rgba(56, 224, 230, .34); }
-  .touchbtn--fire { background: rgba(236, 72, 153, .18); box-shadow: inset 0 0 0 2px rgba(236, 72, 153, .6); color: #ffd0e6; }
-  /* keep the hint clear of the buttons */
-  .appwin__body--game .appwin__hud { bottom: 86px; }
-}
-
 /* ---------- SPIDER project + research folders (inline) ---------- */
 .role-badge { display: inline-block; background: var(--amber); color: #2a1c00; font-family: "Press Start 2P"; font-size: 11px; padding: 4px 8px; margin-right: 6px; vertical-align: middle; white-space: nowrap; }
 .research-para a { color: var(--navy); text-decoration: underline; }
@@ -492,7 +469,7 @@ button.file95 { border: 0; background: none; font: inherit; cursor: pointer; col
   .dsk { width: 66px; }
   .win:first-of-type { margin-top: 22px; }
   /* Floating app windows go (near) full-screen so they're usable by thumb. */
-  .appwin, .appwin--bin, .appwin--apod, .appwin--game {
+  .appwin, .appwin--bin, .appwin--apod {
     width: 100vw; height: calc(100dvh - 42px);
     top: 0; left: 0; transform: none;
   }

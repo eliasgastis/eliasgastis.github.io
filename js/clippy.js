@@ -25,7 +25,6 @@
     "I'd steer clear of the Recycle Bin if I were you. There's a file in there you're absolutely not supposed to open.",
     "It looks like you're writing a thesis. Would you like me to name it FINAL_v12 and misplace the real one?",
     "Fun fact: the wallpaper is a genuine JWST deep field. Almost every speck is an entire galaxy.",
-    "Bored? There's a game of Asteroids on the desktop. Strictly for research, of course.",
     "It looks like you're hiring. What a coincidence — Elias is looking!",
     "Stand still long enough and the stars come out. (Try not touching anything for a minute.)"
   ];
