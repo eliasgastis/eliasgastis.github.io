@@ -1,4 +1,4 @@
-# el1as-gastis.github.io
+# eliasgastis.github.io
 
 My personal website — a space-themed showcase of research, projects, publications, and CV.
 
